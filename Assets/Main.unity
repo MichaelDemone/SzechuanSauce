@@ -135,7 +135,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f40508c06b4197542ad67ff97262431d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  TimeToChoose: 1
+  TimeToChoose: 4
   NextTimeItsShorter: 0.005
   Sauces:
   - {fileID: 114804820106539184, guid: 662a6098cf4130047932564485a1b2ab, type: 2}

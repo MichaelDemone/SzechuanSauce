@@ -25,7 +25,8 @@ public class Dipping : MonoBehaviour {
 	{
         score = 0;
 	    SwipingHandler.UserSwiped += UserSwiped;
-
+	    SwipingHandler.UserSwiped += UserSwipedStats;
+	    
 	    initialTimeToChoose = TimeToChoose;
 	    
 	    GiveNewSauce(TimeToChoose);
@@ -37,6 +38,29 @@ public class Dipping : MonoBehaviour {
         StatsText.text += "\nScore: " + score;
         StatsText.text += "\nHighscore: " + highScore;
         StatsText.text += "\nCurrent sauce: " + currentSauce.name;
+        StatsText.text += "\nLast swipe: " + lastSwipeDirection;
+    }
+
+    private string lastSwipeDirection = "";
+
+    private void UserSwipedStats(SwipingHandler.SwipeDirection direction)
+    {
+        switch (direction)
+        {
+                case SwipingHandler.SwipeDirection.Up:
+                    lastSwipeDirection = "Up";
+                    break;
+                case SwipingHandler.SwipeDirection.Down:
+                    lastSwipeDirection = "Down";
+                    break;
+                case SwipingHandler.SwipeDirection.Right:
+                    lastSwipeDirection = "Right";
+                    break;
+                case SwipingHandler.SwipeDirection.Left:
+                    lastSwipeDirection = "Left";
+                    break;
+        }
+        
     }
     
     void UserSwiped(SwipingHandler.SwipeDirection direction)
