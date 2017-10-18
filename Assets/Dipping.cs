@@ -9,6 +9,8 @@ public class Dipping : MonoBehaviour {
     private int highScore;
     private GameObject[] sauces;
     private bool readyForSauce;
+    private bool timesUp = false;
+
 	// Use this for initialization
 	void Start () 
 	{
@@ -19,36 +21,53 @@ public class Dipping : MonoBehaviour {
 	// Update is called once per frame
 	void Update () 
 	{
-        while(readyForSauce == true)
+        while(readyForSauce == true && timesUp == false)
         {
             timeToChoose -= nextTimeItsShorter;
             newSauce(timeToChoose);
         }
         
     }
-
+    IEnumerator failTimer;
     void newSauce(float time)
     {
+        failTimer = MyCoroutine(time);
+        StartCoroutine(failTimer);
         readyForSauce = false;
         int randVal = Random.Range(0, sauces.Length - 1);
         Instantiate(sauces[randVal], Vector3.zero, Quaternion.identity);
 
-        if (sauces[randVal] = sauces[0]) // if szechuan
+        while (timesUp == false)
         {
-            //check if player opens and dips
-            //give points
-            score+=5;
+            if (sauces[randVal] = sauces[0]) // if szechuan
+            {
+                if (/*player opens and dips*/)
+                {
+                    gotItRight();
+                    return;
+                }
+                else { gotItWrong(); }
+
+
+            }
+            else if (sauces[randVal] != sauces[0]) // other sauce
+            {
+                if (/*player swipes right or left*/)
+                {
+                    gotItRight();
+                    return;
+                }
+                else { gotItWrong(); }
+            }
         }
-        else
-        {
-            // check if player swipes right or left
-            score++;
-        }
+    
     }
 
     void gotItRight()
     {
-
+        score++;
+        StopCoroutine(failTimer);
+        readyForSauce = true;
     }
 
     void gotItWrong()
@@ -58,5 +77,11 @@ public class Dipping : MonoBehaviour {
         {
             highScore = score;
         }
+    }
+
+    IEnumerator MyCoroutine(float seconds)
+    {
+        yield return new WaitForSeconds(seconds);
+        timesUp = true;
     }
 }
