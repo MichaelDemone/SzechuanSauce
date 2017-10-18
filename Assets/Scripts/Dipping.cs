@@ -1,88 +1,130 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Dipping : MonoBehaviour {
-    public float timeToChoose;
-    public float nextTimeItsShorter;
+    
+    public float TimeToChoose;
+    public float NextTimeItsShorter;
+    public Sauce[] Sauces;
+
+    public Text StatsText;
+    
+    private float initialTimeToChoose;
+    
     private int score;
     private int highScore;
-    private GameObject[] sauces;
-    private GameObject currentSauce;
-    private bool readyForSauce;
-    private bool timesUp = false;
+    private Sauce currentSauce;
+    private Sauce szechuanSauce;
 
+    public SwipingHandler SwipingHandler;
+    
 	// Use this for initialization
 	void Start () 
 	{
         score = 0;
-        readyForSauce = true;
+	    SwipingHandler.UserSwiped += UserSwiped;
+
+	    initialTimeToChoose = TimeToChoose;
+	    
+	    GiveNewSauce(TimeToChoose);
 	}
-	
-	// Update is called once per frame
-	void Update () 
-	{
-        while(readyForSauce == true)
-        {
-            timeToChoose -= nextTimeItsShorter;
-            newSauce(timeToChoose);
-        }
-        
-    }
-    IEnumerator failTimer;
 
-    void newSauce(float time)
+    void Update()
     {
-        failTimer = MyCoroutine(time);
-        StartCoroutine(failTimer);
-        readyForSauce = false;
-        int randVal = Random.Range(0, sauces.Length - 1);
-        currentSauce = sauces[randVal];
-        Instantiate(currentSauce, Vector3.zero, Quaternion.identity);
-
-        while (timesUp == false)
+        StatsText.text = "Time: " + TimeToChoose;
+        StatsText.text += "\nScore: " + score;
+        StatsText.text += "\nHighscore: " + highScore;
+        StatsText.text += "\nCurrent sauce: " + currentSauce.name;
+    }
+    
+    void UserSwiped(SwipingHandler.SwipeDirection direction)
+    {
+        if (direction == SwipingHandler.SwipeDirection.Up)
         {
-            if (sauces[randVal] = sauces[0]) // if szechuan
+            // open lid
+            currentSauce.OpenLid();
+        }
+        else if (direction == SwipingHandler.SwipeDirection.Down)
+        {
+            // dunk that shit
+            if (!currentSauce.IsOpen)
             {
-                if (/*player opens and dips*/)
-                {
-                    gotItRight();
-                    return;
-                }             
+                GotItWrong();
             }
-            else if (sauces[randVal] != sauces[0]) // other sauce
+            else 
             {
-                if (/*player swipes right or left*/)
+                currentSauce.DunkTheNug();
+                if (currentSauce.IsSzechuan)
                 {
-                    gotItRight();
-                    return;
+                    GotItRight();
+                }
+                else
+                {
+                    GotItWrong();
                 }
             }
         }
-        gotItWrong();
+        else if (direction == SwipingHandler.SwipeDirection.Left || direction == SwipingHandler.SwipeDirection.Right)
+        {
+            // Get the shit away from me
+            if (currentSauce.IsSzechuan)
+            {
+                GotItWrong();
+            }
+            else
+            {
+                TimeToChoose -= NextTimeItsShorter;
+                GotItRight();
+            }
+        }
+    }
     
+    IEnumerator failTimer;
+
+    void GiveNewSauce(float time)
+    {
+        failTimer = MyCoroutine(time);
+        StartCoroutine(failTimer);
+        
+        int randVal = Random.Range(0, Sauces.Length - 1);
+        currentSauce = Sauces[randVal];
+        currentSauce.Init();
+        
+        currentSauce = Instantiate(currentSauce.gameObject, Vector3.zero, Quaternion.identity).GetComponent<Sauce>();
     }
 
-    void gotItRight()
+    void GotItRight()
     {
         score++;
         StopCoroutine(failTimer);
-        Destroy(currentSauce);
-        readyForSauce = true;
+        Destroy(currentSauce.gameObject);
+        
+        GiveNewSauce(TimeToChoose);
     }
 
-    void gotItWrong()
+    void GotItWrong()
     {
         //game over
         if(score > highScore)
         {
             highScore = score;
         }
+        print("YOU LOSE. Highscore " + highScore + ". Your score " + score);
+
+        StopCoroutine(failTimer);
+        Destroy(currentSauce.gameObject);
+
+        TimeToChoose = initialTimeToChoose;
+        
+        score = 0;
+        GiveNewSauce(TimeToChoose);
     }
 
     IEnumerator MyCoroutine(float seconds)
     {
         yield return new WaitForSeconds(seconds);
-        timesUp = true;
+        GotItWrong();
     }
 }
