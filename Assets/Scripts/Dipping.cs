@@ -8,6 +8,7 @@ public class Dipping : MonoBehaviour {
     private int score;
     private int highScore;
     private GameObject[] sauces;
+    private GameObject currentSauce;
     private bool readyForSauce;
     private bool timesUp = false;
 
@@ -21,7 +22,7 @@ public class Dipping : MonoBehaviour {
 	// Update is called once per frame
 	void Update () 
 	{
-        while(readyForSauce == true && timesUp == false)
+        while(readyForSauce == true)
         {
             timeToChoose -= nextTimeItsShorter;
             newSauce(timeToChoose);
@@ -29,13 +30,15 @@ public class Dipping : MonoBehaviour {
         
     }
     IEnumerator failTimer;
+
     void newSauce(float time)
     {
         failTimer = MyCoroutine(time);
         StartCoroutine(failTimer);
         readyForSauce = false;
         int randVal = Random.Range(0, sauces.Length - 1);
-        Instantiate(sauces[randVal], Vector3.zero, Quaternion.identity);
+        currentSauce = sauces[randVal];
+        Instantiate(currentSauce, Vector3.zero, Quaternion.identity);
 
         while (timesUp == false)
         {
@@ -45,10 +48,7 @@ public class Dipping : MonoBehaviour {
                 {
                     gotItRight();
                     return;
-                }
-                else { gotItWrong(); }
-
-
+                }             
             }
             else if (sauces[randVal] != sauces[0]) // other sauce
             {
@@ -57,9 +57,9 @@ public class Dipping : MonoBehaviour {
                     gotItRight();
                     return;
                 }
-                else { gotItWrong(); }
             }
         }
+        gotItWrong();
     
     }
 
@@ -67,6 +67,7 @@ public class Dipping : MonoBehaviour {
     {
         score++;
         StopCoroutine(failTimer);
+        Destroy(currentSauce);
         readyForSauce = true;
     }
 
