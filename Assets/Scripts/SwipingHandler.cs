@@ -43,8 +43,8 @@ public class SwipingHandler : MonoBehaviour
 	// Update is called once per frame
 	void Update () 
 	{
-		//CheckMouseInput();
-		CheckMobileInput();
+		CheckMouseInput();
+		//CheckMobileInput();
 	}
 
 	private bool swiping = false;

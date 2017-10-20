@@ -124,7 +124,6 @@ public class Dipping : MonoBehaviour {
         score++;
         StopCoroutine(failTimer);
         Destroy(currentSauce.gameObject);
-        
         GiveNewSauce(TimeToChoose);
     }
 
@@ -146,6 +145,7 @@ public class Dipping : MonoBehaviour {
         GiveNewSauce(TimeToChoose);
     }
 
+    
     IEnumerator MyCoroutine(float seconds)
     {
         yield return new WaitForSeconds(seconds);
