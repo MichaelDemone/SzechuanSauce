@@ -115,15 +115,20 @@ public class Dipping : MonoBehaviour {
         int randVal = Random.Range(0, Sauces.Length - 1);
         currentSauce = Sauces[randVal];
         currentSauce.Init();
-        
+        Vector3 rotation;
+        rotation.x = 90;
+        rotation.y = 0;
+        rotation.z = -90;
         currentSauce = Instantiate(currentSauce.gameObject, Vector3.zero, Quaternion.identity).GetComponent<Sauce>();
+        currentSauce.transform.Rotate(rotation);
     }
 
     void GotItRight()
     {
         score++;
         StopCoroutine(failTimer);
-        Destroy(currentSauce.gameObject);
+        currentSauce.GetComponent<Rigidbody>().AddForce(Vector3.left*1000);
+        //Destroy(currentSauce.gameObject);
         GiveNewSauce(TimeToChoose);
     }
 

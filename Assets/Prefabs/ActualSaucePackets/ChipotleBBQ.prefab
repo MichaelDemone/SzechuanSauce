@@ -24,6 +24,7 @@ GameObject:
   - component: {fileID: 23448376140713328}
   - component: {fileID: 114984445936058502}
   - component: {fileID: 54840273901742344}
+  - component: {fileID: 114740695182256044}
   m_Layer: 0
   m_Name: ChipotleBBQ
   m_TagString: Untagged
@@ -53,14 +54,14 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1028493071193180}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0.70710677, z: -0.70710677, w: 0}
   m_LocalPosition: {x: 6.1460724, y: 4.9238625, z: 1.1604462}
-  m_LocalScale: {x: 25, y: 25, z: 25}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4364890591562210}
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 90, y: 90, z: -90}
 --- !u!4 &4364890591562210
 Transform:
   m_ObjectHideFlags: 1
@@ -112,7 +113,7 @@ MeshFilter:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1028493071193180}
-  m_Mesh: {fileID: 4300000, guid: 9d32eda4ed49fcd45a974f5369b42f3b, type: 3}
+  m_Mesh: {fileID: 4300000, guid: 7a44ebc39ec74bd43af568112efaf1db, type: 3}
 --- !u!54 &54840273901742344
 Rigidbody:
   m_ObjectHideFlags: 1
@@ -123,7 +124,7 @@ Rigidbody:
   m_Mass: 1
   m_Drag: 0
   m_AngularDrag: 0
-  m_UseGravity: 0
+  m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
@@ -140,13 +141,27 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 3.290642, y: 2.283487, z: 0.5713733}
   m_Center: {x: -0.06282715, y: -0.0039421082, z: -0.07354065}
---- !u!114 &114984445936058502
+--- !u!114 &114740695182256044
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1028493071193180}
   m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: afff195e915a6454eaba014b3955dd89, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  IsSzechuan: 0
+  IsOpen: 0
+  NugDunked: 0
+--- !u!114 &114984445936058502
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1028493071193180}
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7a04eb1c1600a8844985562fbab2ff74, type: 3}
   m_Name: 
