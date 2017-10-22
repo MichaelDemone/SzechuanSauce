@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+
 public class Dipping : MonoBehaviour {
     
     public float TimeToChoose;
@@ -10,11 +11,11 @@ public class Dipping : MonoBehaviour {
     public Sauce[] Sauces;
 
     public Text StatsText;
-    
+    public GameObject button;
     private float initialTimeToChoose;
     
     private int score;
-    private int highScore;
+    public static int highScore;
     private Sauce currentSauce;
     private Sauce szechuanSauce;
 
@@ -34,11 +35,11 @@ public class Dipping : MonoBehaviour {
 
     void Update()
     {
-        StatsText.text = "Time: " + TimeToChoose;
-        StatsText.text += "\nScore: " + score;
-        StatsText.text += "\nHighscore: " + highScore;
-        StatsText.text += "\nCurrent sauce: " + currentSauce.name;
-        StatsText.text += "\nLast swipe: " + lastSwipeDirection;
+        //StatsText.text = "Time: " + TimeToChoose;
+        StatsText.text = "\nScore: " + score;
+        //StatsText.text += "\nHighscore: " + highScore;
+        //StatsText.text += "\nCurrent sauce: " + currentSauce.name;
+        //StatsText.text += "\nLast swipe: " + lastSwipeDirection;
     }
 
     private string lastSwipeDirection = "";
@@ -125,11 +126,22 @@ public class Dipping : MonoBehaviour {
 
     void GotItRight()
     {
-        score++;
-        StopCoroutine(failTimer);
-        currentSauce.GetComponent<Rigidbody>().AddForce(Vector3.left*1000);
-        //Destroy(currentSauce.gameObject);
-        GiveNewSauce(TimeToChoose);
+        if (currentSauce.IsSzechuan)
+        {
+            score += 5;
+            StopCoroutine(failTimer);
+            Destroy(currentSauce.gameObject);
+            GiveNewSauce(TimeToChoose);
+        }
+        else
+        {
+            score++;
+            StopCoroutine(failTimer);
+            currentSauce.GetComponent<Rigidbody>().AddForce(Vector3.left*1000);
+            //Destroy(currentSauce.gameObject);
+            GiveNewSauce(TimeToChoose);
+        }
+       
     }
 
     void GotItWrong()
@@ -144,10 +156,15 @@ public class Dipping : MonoBehaviour {
         StopCoroutine(failTimer);
         Destroy(currentSauce.gameObject);
 
-        TimeToChoose = initialTimeToChoose;
+        //TimeToChoose = initialTimeToChoose;
         
+        
+        //GiveNewSauce(TimeToChoose);
+        button.SetActive(true);
+        Text buttonText = button.GetComponentInChildren<Text>();
+        buttonText.text = "Your Score: " + score + "\n"
+                            + "Highscore: " + highScore;
         score = 0;
-        GiveNewSauce(TimeToChoose);
     }
 
     
