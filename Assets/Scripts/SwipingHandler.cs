@@ -107,4 +107,12 @@ public class SwipingHandler : MonoBehaviour
 		}
 
 	}
+
+    private Vector2 SwipingLikeOnTinderButIfTheGirlsWereNugs() {
+        Vector2 DylansSexyVector = new Vector2(0, 0) ;
+        if(Input.touches[0].phase == TouchPhase.Moved) {
+            DylansSexyVector=Input.touches[0].deltaPosition.normalized;
+        }
+        return DylansSexyVector;
+    }
 }
