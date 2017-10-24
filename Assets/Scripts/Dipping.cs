@@ -20,13 +20,19 @@ public class Dipping : MonoBehaviour {
     private Sauce szechuanSauce;
 
     public SwipingHandler SwipingHandler;
+
+    public Transform SpawnPoint;
+
+    public float ForceMultiplier;
+
+    public bool ShouldScaleWithSwipeLength = false;
     
 	// Use this for initialization
 	void Start () 
 	{
         score = 0;
 	    SwipingHandler.UserSwiped += UserSwiped;
-	    SwipingHandler.UserSwiped += UserSwipedStats;
+	    SwipingHandler.UserTapped += UserTapped;
 	    
 	    initialTimeToChoose = TimeToChoose;
 	    
@@ -42,67 +48,35 @@ public class Dipping : MonoBehaviour {
         //StatsText.text += "\nLast swipe: " + lastSwipeDirection;
     }
 
-    private string lastSwipeDirection = "";
-
-    private void UserSwipedStats(SwipingHandler.SwipeDirection direction)
+    void UserTapped()
     {
-        switch (direction)
+        if (currentSauce.IsSzechuan)
         {
-                case SwipingHandler.SwipeDirection.Up:
-                    lastSwipeDirection = "Up";
-                    break;
-                case SwipingHandler.SwipeDirection.Down:
-                    lastSwipeDirection = "Down";
-                    break;
-                case SwipingHandler.SwipeDirection.Right:
-                    lastSwipeDirection = "Right";
-                    break;
-                case SwipingHandler.SwipeDirection.Left:
-                    lastSwipeDirection = "Left";
-                    break;
+            GotItRight();
         }
-        
+        else
+        {
+            GotItWrong();
+        } 
     }
     
-    void UserSwiped(SwipingHandler.SwipeDirection direction)
+    private Vector3 forceDir = new Vector3();
+    void UserSwiped(Vector2 direction)
     {
-        if (direction == SwipingHandler.SwipeDirection.Up)
+        
+        forceDir.x = direction.x;
+        forceDir.z = direction.y;
+        if (ShouldScaleWithSwipeLength) forceDir.Normalize();
+        forceDir *= ForceMultiplier;
+        currentSauce.GetComponent<Rigidbody>().AddForce(forceDir);
+
+        if (currentSauce.IsSzechuan)
         {
-            // open lid
-            currentSauce.OpenLid();
+            GotItWrong();
         }
-        else if (direction == SwipingHandler.SwipeDirection.Down)
+        else
         {
-            // dunk that shit
-            if (!currentSauce.IsOpen)
-            {
-                GotItWrong();
-            }
-            else 
-            {
-                currentSauce.DunkTheNug();
-                if (currentSauce.IsSzechuan)
-                {
-                    GotItRight();
-                }
-                else
-                {
-                    GotItWrong();
-                }
-            }
-        }
-        else if (direction == SwipingHandler.SwipeDirection.Left || direction == SwipingHandler.SwipeDirection.Right)
-        {
-            // Get the shit away from me
-            if (currentSauce.IsSzechuan)
-            {
-                GotItWrong();
-            }
-            else
-            {
-                TimeToChoose -= NextTimeItsShorter;
-                GotItRight();
-            }
+            GotItRight();
         }
     }
     
@@ -120,12 +94,14 @@ public class Dipping : MonoBehaviour {
         rotation.x = 90;
         rotation.y = 0;
         rotation.z = -90;
-        currentSauce = Instantiate(currentSauce.gameObject, Vector3.zero, Quaternion.identity).GetComponent<Sauce>();
+        currentSauce = Instantiate(currentSauce.gameObject, SpawnPoint.position, Quaternion.identity).GetComponent<Sauce>();
         currentSauce.transform.Rotate(rotation);
     }
 
     void GotItRight()
     {
+        TimeToChoose -= NextTimeItsShorter;
+
         if (currentSauce.IsSzechuan)
         {
             score += 5;
@@ -137,7 +113,6 @@ public class Dipping : MonoBehaviour {
         {
             score++;
             StopCoroutine(failTimer);
-            currentSauce.GetComponent<Rigidbody>().AddForce(Vector3.left*1000);
             //Destroy(currentSauce.gameObject);
             GiveNewSauce(TimeToChoose);
         }

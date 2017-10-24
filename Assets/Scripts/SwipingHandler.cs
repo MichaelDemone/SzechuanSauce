@@ -16,27 +16,14 @@ public class SwipingHandler : MonoBehaviour
 		Right,
 	}
 
-	public Action<SwipeDirection> UserSwiped;
+	public float MinMagnitudeForSwipe = 1f;
+	public Action<Vector2> UserSwiped;
+	public Action UserTapped;
 	
 	// Use this for initialization
 	void Start ()
 	{
-		UserSwiped += direction =>
-		{
-			switch (direction)
-			{
-				case SwipeDirection.Up:
-					break;
-				case SwipeDirection.Down:
-					break;
-				case SwipeDirection.Right:
-					break;
-				case SwipeDirection.Left:
-					break;
-				default:
-					break;
-			}
-		};
+		
 	}
 	
 	
@@ -66,7 +53,7 @@ public class SwipingHandler : MonoBehaviour
 		if (currentTouch == null) return;
 		
 		currentTouch = null;
-		SwipeDirection direction = GetDirection(swipingPoints);
+		Vector2 direction = GetDirection(swipingPoints);
 		UserSwiped(direction);
 	}
 	
@@ -85,26 +72,27 @@ public class SwipingHandler : MonoBehaviour
 		else if (swiping)
 		{
 			swiping = false;
-			SwipeDirection direction = GetDirection(swipingPoints);
-			UserSwiped(direction);
+			Vector2 direction = GetDirection(swipingPoints);
+			print(direction.magnitude);
+			if (direction.magnitude < MinMagnitudeForSwipe)
+			{
+				UserTapped();
+			}
+			else
+			{
+				UserSwiped(direction);
+			}
 		}
 	}
 
-	private SwipeDirection GetDirection(List<Vector2> swipingPoints)
+	private Vector2 directionSwipe = new Vector2();
+	private Vector2 GetDirection(List<Vector2> swipingPoints)
 	{
 		float xAmount = swipingPoints.Last().x - swipingPoints.First().x;
 		float yAmount = swipingPoints.Last().y - swipingPoints.First().y;
-
-		if (Math.Abs(xAmount) > Math.Abs(yAmount))
-		{
-			// left or right
-			return xAmount > 0 ? SwipeDirection.Right : SwipeDirection.Left;
-		}
-		else
-		{
-			// up or down
-			return yAmount > 0 ? SwipeDirection.Up : SwipeDirection.Down;
-		}
+		
+		directionSwipe.Set(xAmount, yAmount);
+		return directionSwipe;
 
 	}
 
