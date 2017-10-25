@@ -138,20 +138,13 @@ MonoBehaviour:
   TimeToChoose: 4
   NextTimeItsShorter: 0.005
   Sauces:
-  - {fileID: 114740695182256044, guid: d4fd07763503fbb4f9fc93700da88e9e, type: 2}
-  - {fileID: 114138387665896160, guid: ebc8108e4abb3044db267a3b7d9d0ae7, type: 2}
-  - {fileID: 114641936385175570, guid: 3ff338c29323b9c41a0cfb37915ccaaf, type: 2}
-  - {fileID: 114668576946673348, guid: 35bd888e4b466f84099089c72cea737f, type: 2}
-  - {fileID: 114171100721927932, guid: a019d7b45636ba649b0e667a4df77267, type: 2}
-  - {fileID: 114424523877075920, guid: b810e295ee741ec40b25ea71cd156ef9, type: 2}
-  - {fileID: 114353950001729736, guid: dc057aeb214f2104093c6e066162127a, type: 2}
   - {fileID: 114524417731682530, guid: 1759cabf05a1f994b90cc0157c1d8f3b, type: 2}
-  - {fileID: 114877375538606772, guid: a9a579057a3f47c4fae54e84eeb4289b, type: 2}
   StatsText: {fileID: 2055721898}
   button: {fileID: 420562896}
   SwipingHandler: {fileID: 1064475787}
   SpawnPoint: {fileID: 2077478038}
   ForceMultiplier: 10
+  MaxForce: {x: 100, y: 100}
   ShouldScaleWithSwipeLength: 0
 --- !u!4 &1621167
 Transform:
@@ -885,7 +878,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bb1f53b3cbdc2c6409867da7d97c1e6c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MinMagnitudeForSwipe: 1
+  MinMagnitudeForSwipe: 0.01
 --- !u!4 &1064475788
 Transform:
   m_ObjectHideFlags: 0

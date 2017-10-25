@@ -1,8 +1,9 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-
+using Random = UnityEngine.Random;
 
 public class Dipping : MonoBehaviour {
     
@@ -24,7 +25,9 @@ public class Dipping : MonoBehaviour {
     public Transform SpawnPoint;
 
     public float ForceMultiplier;
-
+    public Vector2 MaxForce = new Vector2(100, 100);
+    
+    
     public bool ShouldScaleWithSwipeLength = false;
     
 	// Use this for initialization
@@ -68,6 +71,8 @@ public class Dipping : MonoBehaviour {
         forceDir.z = direction.y;
         if (ShouldScaleWithSwipeLength) forceDir.Normalize();
         forceDir *= ForceMultiplier;
+        forceDir.x = Math.Min(forceDir.x, MaxForce.x);
+        forceDir.y = Math.Min(forceDir.y, MaxForce.y);
         currentSauce.GetComponent<Rigidbody>().AddForce(forceDir);
 
         if (currentSauce.IsSzechuan)
@@ -106,8 +111,9 @@ public class Dipping : MonoBehaviour {
         {
             score += 5;
             StopCoroutine(failTimer);
-            Destroy(currentSauce.gameObject);
-            GiveNewSauce(TimeToChoose);
+            //Destroy(currentSauce.gameObject);
+            currentSauce.DunkTheNug(() => GiveNewSauce(TimeToChoose));
+            //GiveNewSauce(TimeToChoose);
         }
         else
         {

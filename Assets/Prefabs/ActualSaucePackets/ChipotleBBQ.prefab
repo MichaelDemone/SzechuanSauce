@@ -155,6 +155,8 @@ MonoBehaviour:
   IsSzechuan: 0
   IsOpen: 0
   NugDunked: 0
+  LidRigidbody: {fileID: 0}
+  force: {x: 0, y: 0, z: 0}
 --- !u!114 &114984445936058502
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -166,7 +168,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7a04eb1c1600a8844985562fbab2ff74, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  somewhere: {x: 0, y: 0, z: 0}
+  Somewhere: {x: 0, y: 0, z: 0}
+  Force: 0
 --- !u!212 &212132965722409254
 SpriteRenderer:
   m_ObjectHideFlags: 1

@@ -4,14 +4,16 @@ using UnityEngine;
 
 public class RandomMove : MonoBehaviour {
 
-    public Vector3 somewhere;
+    public Vector3 Somewhere;
+	public float Force;
+	
 	// Use this for initialization
 	void Start () {
-        somewhere.x = Random.Range(-100, 100);
-        somewhere.y = Random.Range(-100, 100);
-        somewhere.z = Random.Range(-100, 100);
+        Somewhere.x = Random.Range(-Force, Force);
+        Somewhere.y = Random.Range(-Force, Force);
+        Somewhere.z = Random.Range(-Force, Force);
 
-        GetComponent<Rigidbody>().AddForce(somewhere*100);
+        GetComponent<Rigidbody>().AddForce(Somewhere);
 	}
 	
 	// Update is called once per frame
