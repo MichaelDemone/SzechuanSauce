@@ -76,7 +76,7 @@ public class SwipingHandler : MonoBehaviour
 			print(direction.magnitude);
 			if (direction.magnitude < MinMagnitudeForSwipe)
 			{
-				UserTapped();
+				if(UserTapped != null) UserTapped();
 			}
 			else
 			{
