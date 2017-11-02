@@ -132,10 +132,10 @@ public class Dipping : MonoBehaviour {
         {
             highScore = score;
         }
-        print("YOU LOSE. Highscore " + highScore + ". Your score " + score);
+        print("YOU LOSE. Highscore " + highScore + ". Your score " + score + " Time to choose: " + TimeToChoose);
 
         StopCoroutine(failTimer);
-        Destroy(currentSauce.gameObject);
+        if(currentSauce != null) Destroy(currentSauce.gameObject);
 
         //TimeToChoose = initialTimeToChoose;
         

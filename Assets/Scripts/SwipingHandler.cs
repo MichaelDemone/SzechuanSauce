@@ -16,7 +16,7 @@ public class SwipingHandler : MonoBehaviour
 		Right,
 	}
 
-	public float MinMagnitudeForSwipe = 1f;
+	public float MinMagnitudeForSwipe = 5f;
 	public Action<Vector2> UserSwiped;
 	public Action UserTapped;
 	
