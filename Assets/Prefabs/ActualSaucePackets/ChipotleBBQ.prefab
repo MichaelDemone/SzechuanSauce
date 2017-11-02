@@ -422,7 +422,7 @@ Rigidbody:
   m_Mass: 1
   m_Drag: 0
   m_AngularDrag: 0
-  m_UseGravity: 0
+  m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
@@ -550,6 +550,7 @@ MonoBehaviour:
   IsOpen: 0
   NugDunked: 0
   LidRigidbody: {fileID: 0}
+  Sawce: {fileID: 0}
   force: {x: 0, y: 0, z: 0}
 --- !u!114 &114984445936058502
 MonoBehaviour:

@@ -23,10 +23,21 @@ public class Sauce : MonoBehaviour {
 
 	public Rigidbody LidRigidbody;
 	
+	public GameObject THANUG;
+	public float DUNKSPEEEEED;
+	
+	public ParticleSystem Sawce;
+	
 	public void Init()
 	{
 		IsOpen = false;
 		NugDunked = false;
+		Sawce = GetComponentInChildren<ParticleSystem>();
+		if (Sawce != null)
+		{
+			var emission = Sawce.emission;
+			emission.enabled = false;
+		}
 	}
 	
 	
@@ -41,12 +52,18 @@ public class Sauce : MonoBehaviour {
 		// here's the magic.
 		FlipThatShit();
 		FuckingDunkTheActualNugSoHard();
-		StartCoroutine(Wait(AfterDunk));
+		StartCoroutine(Wait(0.25f, MakeAFuckingSauceBukkake));
+		StartCoroutine(Wait(3, () =>
+		{
+			AfterDunk();
+			Destroy(this.gameObject);
+		}));
 	}
 
 	public Vector3 force;
 	private void FlipThatShit()
 	{
+		if (LidRigidbody == null) return;
 		LidRigidbody.isKinematic = false;
 		Vector3 localForcePos = new Vector3(1.609f, 0, -1f);
 		Vector3 worldForcePos = transform.TransformPoint(localForcePos);
@@ -55,13 +72,36 @@ public class Sauce : MonoBehaviour {
 
 	private void FuckingDunkTheActualNugSoHard()
 	{
-		
+		StartCoroutine(DUNKTHATNUG());
 	}
 
-	IEnumerator Wait(Action AfterDunk)
+	IEnumerator DUNKTHATNUG()
 	{
-		yield return new WaitForSeconds(1f);
-		AfterDunk();
+		while (THANUG.transform.position.z < 20)
+		{
+			var pos = THANUG.transform.localPosition;
+			pos.z += DUNKSPEEEEED * Time.deltaTime;
+			THANUG.transform.localPosition = pos;
+			yield return null;
+		}
+	}
+	
+	private void MakeAFuckingSauceBukkake()
+	{
+		if (Sawce != null)
+		{
+			var emission = Sawce.emission;
+			emission.enabled = true;
+			Sawce.Emit(20);
+			emission.enabled = false;
+		}
+
+	}
+	
+	IEnumerator Wait(float time, Action AfterAction)
+	{
+		yield return new WaitForSeconds(time);
+		AfterAction();
 	}
 	
 }
