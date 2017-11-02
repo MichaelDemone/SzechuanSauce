@@ -28,7 +28,7 @@ public class Dipping : MonoBehaviour {
     public Vector2 MaxForce = new Vector2(100, 100);
     
     
-    public bool ShouldScaleWithSwipeLength = false;
+    public bool ShouldScaleWithSwipeLength = true;
     
 	// Use this for initialization
 	void Start () 
@@ -71,8 +71,8 @@ public class Dipping : MonoBehaviour {
         forceDir.z = direction.y;
         if (ShouldScaleWithSwipeLength) forceDir.Normalize();
         forceDir *= ForceMultiplier;
-        forceDir.x = Math.Min(forceDir.x, MaxForce.x);
-        forceDir.y = Math.Min(forceDir.y, MaxForce.y);
+        //forceDir.x = Math.Min(forceDir.x, MaxForce.x);
+        //forceDir.y = Math.Min(forceDir.y, MaxForce.y);
         currentSauce.GetComponent<Rigidbody>().AddForce(forceDir);
 
         if (currentSauce.IsSzechuan)
