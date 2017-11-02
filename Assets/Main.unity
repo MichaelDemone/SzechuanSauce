@@ -151,9 +151,9 @@ MonoBehaviour:
   button: {fileID: 420562896}
   SwipingHandler: {fileID: 1064475787}
   SpawnPoint: {fileID: 2077478038}
-  ForceMultiplier: 10
+  ForceMultiplier: 2000
   MaxForce: {x: 100, y: 100}
-  ShouldScaleWithSwipeLength: 0
+  ShouldScaleWithSwipeLength: 1
 --- !u!4 &1621167
 Transform:
   m_ObjectHideFlags: 0
