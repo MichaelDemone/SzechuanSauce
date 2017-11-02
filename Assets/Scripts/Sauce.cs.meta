@@ -1,10 +1,13 @@
 fileFormatVersion: 2
 guid: afff195e915a6454eaba014b3955dd89
-timeCreated: 1508300614
+timeCreated: 1509602477
 licenseType: Free
 MonoImporter:
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - LidRigidbody: {instanceID: 0}
+  - THANUG: {fileID: 1572433959872456, guid: 1759cabf05a1f994b90cc0157c1d8f3b, type: 2}
+  - Sawce: {instanceID: 0}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 
