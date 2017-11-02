@@ -22,6 +22,7 @@ public class Sauce : MonoBehaviour {
 	public bool NugDunked = false;
 
 	public Rigidbody LidRigidbody;
+    public GameObject Packet;
 	
 	public GameObject THANUG;
 	public float DUNKSPEEEEED;
@@ -53,7 +54,7 @@ public class Sauce : MonoBehaviour {
 		FlipThatShit();
 		FuckingDunkTheActualNugSoHard();
 		StartCoroutine(Wait(0.25f, MakeAFuckingSauceBukkake));
-		StartCoroutine(Wait(3, () =>
+		StartCoroutine(Wait(0.25f, () =>
 		{
 			AfterDunk();
 			Destroy(this.gameObject);

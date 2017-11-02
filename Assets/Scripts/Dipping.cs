@@ -74,6 +74,7 @@ public class Dipping : MonoBehaviour {
         //forceDir.x = Math.Min(forceDir.x, MaxForce.x);
         //forceDir.y = Math.Min(forceDir.y, MaxForce.y);
         currentSauce.GetComponent<Rigidbody>().AddForce(forceDir);
+        currentSauce.GetComponent<AudioSource>().Play();
 
         if (currentSauce.IsSzechuan)
         {
@@ -111,6 +112,7 @@ public class Dipping : MonoBehaviour {
         {
             score += 5;
             StopCoroutine(failTimer);
+            currentSauce.GetComponent<AudioSource>().Play();
             //Destroy(currentSauce.gameObject);
             currentSauce.DunkTheNug(() => GiveNewSauce(TimeToChoose));
             //GiveNewSauce(TimeToChoose);
