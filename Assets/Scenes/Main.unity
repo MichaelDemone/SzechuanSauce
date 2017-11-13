@@ -149,6 +149,9 @@ MonoBehaviour:
   - {fileID: 114877375538606772, guid: a9a579057a3f47c4fae54e84eeb4289b, type: 2}
   StatsText: {fileID: 2055721898}
   button: {fileID: 420562896}
+  cameraObject: {fileID: 2084164847}
+  ShakeIntensity: 100
+  ShakeDuration: 0.02
   SwipingHandler: {fileID: 1064475787}
   SpawnPoint: {fileID: 2077478038}
   ForceMultiplier: 2000
@@ -165,7 +168,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &102643317
 GameObject:
@@ -178,7 +181,7 @@ GameObject:
   - component: {fileID: 102643320}
   - component: {fileID: 102643319}
   - component: {fileID: 102643318}
-  m_Layer: 0
+  m_Layer: 4
   m_Name: Quad (4)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -527,7 +530,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &812406707
 GameObject:
@@ -765,7 +768,7 @@ RectTransform:
   - {fileID: 2055721897}
   - {fileID: 420562897}
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -783,7 +786,7 @@ GameObject:
   - component: {fileID: 960617807}
   - component: {fileID: 960617806}
   - component: {fileID: 960617805}
-  m_Layer: 0
+  m_Layer: 4
   m_Name: Quad (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -867,7 +870,7 @@ GameObject:
   - component: {fileID: 970404640}
   - component: {fileID: 970404639}
   - component: {fileID: 970404638}
-  m_Layer: 0
+  m_Layer: 4
   m_Name: Quad (3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -979,7 +982,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1458594998
 GameObject:
@@ -1062,7 +1065,7 @@ Transform:
   m_LocalScale: {x: 5, y: 5, z: 5}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!82 &1458595003
 AudioSource:
@@ -1175,7 +1178,7 @@ Transform:
   - {fileID: 970404641}
   - {fileID: 102643321}
   m_Father: {fileID: 0}
-  m_RootOrder: 8
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1666267450
 GameObject:
@@ -1188,7 +1191,7 @@ GameObject:
   - component: {fileID: 1666267453}
   - component: {fileID: 1666267452}
   - component: {fileID: 1666267451}
-  m_Layer: 0
+  m_Layer: 4
   m_Name: Quad
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1343,11 +1346,11 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1852484459}
-  m_LocalRotation: {x: 0.7071068, y: 0, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: 0, y: 13, z: 0}
+  m_LocalRotation: {x: 0.7071068, y: -0, z: -0, w: 0.7071068}
+  m_LocalPosition: {x: 0.0204703, y: 12.87, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 2084164849}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
 --- !u!1 &1974767152
@@ -1413,7 +1416,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
 --- !u!1 &2055721896
 GameObject:
@@ -1515,7 +1518,53 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 6
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &2084164847
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 2084164849}
+  - component: {fileID: 2084164848}
+  m_Layer: 0
+  m_Name: GameObject
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &2084164848
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2084164847}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cc0dd742575e9cd4693c1b4585ecf368, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  debugMode: 0
+  shakeAmount: 10
+  shakeDuration: 0.1
+  smooth: 1
+  smoothAmount: 5
+--- !u!4 &2084164849
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2084164847}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -0.0204703, y: 0.13, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 1852484464}
+  m_Father: {fileID: 0}
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2101995529
 GameObject:
@@ -1528,7 +1577,7 @@ GameObject:
   - component: {fileID: 2101995532}
   - component: {fileID: 2101995531}
   - component: {fileID: 2101995530}
-  m_Layer: 0
+  m_Layer: 4
   m_Name: Quad (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}

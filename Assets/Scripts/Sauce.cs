@@ -33,12 +33,6 @@ public class Sauce : MonoBehaviour {
 	{
 		IsOpen = false;
 		NugDunked = false;
-		Sawce = GetComponentInChildren<ParticleSystem>();
-		if (Sawce != null)
-		{
-			var emission = Sawce.emission;
-			emission.enabled = false;
-		}
 	}
 	
 	
@@ -91,9 +85,11 @@ public class Sauce : MonoBehaviour {
 	{
 		if (Sawce != null)
 		{
-			var emission = Sawce.emission;
+            GameObject system = GameObject.Instantiate(Sawce.gameObject);
+            system.GetComponent<Tracker>().SetObjectToTrack(gameObject);
+			var emission = system.GetComponent<ParticleSystem>().emission;
 			emission.enabled = true;
-			Sawce.Emit(20);
+            system.GetComponent<ParticleSystem>().Emit(20);
 			emission.enabled = false;
 		}
 

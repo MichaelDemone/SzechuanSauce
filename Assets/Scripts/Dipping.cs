@@ -6,17 +6,22 @@ using UnityEngine.UI;
 using Random = UnityEngine.Random;
 
 public class Dipping : MonoBehaviour {
-    
+
+
+    public static int highScore;
+
     public float TimeToChoose;
     public float NextTimeItsShorter;
     public Sauce[] Sauces;
 
     public Text StatsText;
     public GameObject button;
+    public GameObject cameraObject;
+    public float ShakeIntensity;
+    public float ShakeDuration;
     private float initialTimeToChoose;
     
     private int score;
-    public static int highScore;
     private Sauce currentSauce;
     private Sauce szechuanSauce;
 
@@ -33,6 +38,8 @@ public class Dipping : MonoBehaviour {
 	// Use this for initialization
 	void Start () 
 	{
+        highScore = PlayerPrefs.GetInt("highscore", 0);
+
         score = 0;
 	    SwipingHandler.UserSwiped += UserSwiped;
 	    SwipingHandler.UserTapped += UserTapped;
@@ -112,6 +119,7 @@ public class Dipping : MonoBehaviour {
         {
             score += 5;
             StopCoroutine(failTimer);
+            cameraObject.GetComponent<CameraShake>().ShakeCamera(ShakeIntensity, ShakeDuration);
             currentSauce.GetComponent<AudioSource>().Play();
             //Destroy(currentSauce.gameObject);
             currentSauce.DunkTheNug(() => GiveNewSauce(TimeToChoose));
@@ -133,6 +141,8 @@ public class Dipping : MonoBehaviour {
         if(score > highScore)
         {
             highScore = score;
+            PlayerPrefs.SetInt("highscore", highScore);
+            PlayerPrefs.Save();
         }
         print("YOU LOSE. Highscore " + highScore + ". Your score " + score + " Time to choose: " + TimeToChoose);
 

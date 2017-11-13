@@ -73,7 +73,7 @@ public class SwipingHandler : MonoBehaviour
 		{
 			swiping = false;
 			Vector2 direction = GetDirection(swipingPoints);
-			print(direction.magnitude);
+
 			if (direction.magnitude < MinMagnitudeForSwipe)
 			{
 				if(UserTapped != null) UserTapped();
