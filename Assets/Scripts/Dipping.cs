@@ -119,7 +119,7 @@ public class Dipping : MonoBehaviour {
 
         if (currentSauce.IsSzechuan)
         {
-            score += 5;
+            score++;
             StopCoroutine(failTimer);
             cameraObject.GetComponent<CameraShake>().ShakeCamera(ShakeIntensity, ShakeDuration);
             currentSauce.GetComponent<AudioSource>().Play();
