@@ -2,28 +2,35 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.Advertisements;
 
 public class PlayButton : MonoBehaviour {
     public GameObject CreditsPanel;
-	// Use this for initialization
-	void Start () {
-		
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
+    private static int CountdownToPayday = 0;
+    // Use this for initialization
 
     public void PressPlay()
     {
-        SceneManager.LoadScene("Main");
+        if (CountdownToPayday < 6) {
+            CountdownToPayday++;
+            SceneManager.LoadScene("Main");
+        } else {
+            Advertisement.Show();
+            CountdownToPayday = 0;
+        }
 
     }
 
     public void BackToMenu()
     {
-        SceneManager.LoadScene("MainMenu");
+        if (CountdownToPayday < 6) {
+            CountdownToPayday++;
+            SceneManager.LoadScene("MainMenu");
+        } else {
+            Advertisement.Show();
+            CountdownToPayday = 0;
+        }
+        
     }
     
     public void WhoIsResponsible() 
