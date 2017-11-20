@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class PlayButton : MonoBehaviour {
-
+    public GameObject CreditsPanel;
 	// Use this for initialization
 	void Start () {
 		
@@ -24,5 +24,14 @@ public class PlayButton : MonoBehaviour {
     public void BackToMenu()
     {
         SceneManager.LoadScene("MainMenu");
+    }
+    
+    public void WhoIsResponsible() 
+    {
+        CreditsPanel.SetActive(true);
+    }
+
+    public void CreditsBegone() {
+        CreditsPanel.SetActive(false);
     }
 }
