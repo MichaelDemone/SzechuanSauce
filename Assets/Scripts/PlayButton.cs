@@ -9,6 +9,7 @@ public class PlayButton : MonoBehaviour {
     public GameObject ThatAnnoyingNug;
     public GameObject Tutorial1;
     public GameObject Tutorial2;
+    public GameObject TastyOptions;
     private static int CountdownToPayday = 0;
 
     // Use this for initialization
@@ -59,6 +60,14 @@ public class PlayButton : MonoBehaviour {
 
     public void HowToPlayBegone() {
         Tutorial2.SetActive(false);
+    }
+
+    public void TastyOptionsComeHither() {
+        TastyOptions.SetActive(true);
+    }
+
+    public void TastyOptionsBegone() {
+        TastyOptions.SetActive(false);
     }
 
 }

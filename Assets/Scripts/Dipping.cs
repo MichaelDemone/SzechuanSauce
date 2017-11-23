@@ -14,7 +14,11 @@ public class Dipping : MonoBehaviour {
 
     public float TimeToChoose;
     public float NextTimeItsShorter;
+    public float minTimeLimit;
     public Sauce[] Sauces;
+    public Sauce[] SaucesMid;
+    public Sauce[] SaucesFinal;
+
 
     public Text StatsText;
     public GameObject button;
@@ -101,9 +105,16 @@ public class Dipping : MonoBehaviour {
     {
         failTimer = MyCoroutine(time);
         StartCoroutine(failTimer);
-        
-        int randVal = Random.Range(0, Sauces.Length - 1);
-        currentSauce = Sauces[randVal];
+        if (score<=50) {
+            int randVal = Random.Range(0, Sauces.Length - 1);
+            currentSauce = Sauces[randVal];
+        } else if (score>50 && score <= 100) {
+            int randVal = Random.Range(0, SaucesMid.Length - 1);
+            currentSauce = SaucesMid[randVal];
+        } else {
+            int randVal = Random.Range(0, SaucesFinal.Length - 1);
+            currentSauce = SaucesFinal[randVal];
+        }
         currentSauce.Init();
         Vector3 rotation;
         rotation.x = 90;
@@ -115,7 +126,10 @@ public class Dipping : MonoBehaviour {
 
     void GotItRight()
     {
-        TimeToChoose -= NextTimeItsShorter;
+        if (TimeToChoose > minTimeLimit) {
+            TimeToChoose -= NextTimeItsShorter;
+        }
+
 
         if (currentSauce.IsSzechuan)
         {
@@ -135,6 +149,10 @@ public class Dipping : MonoBehaviour {
             GiveNewSauce(TimeToChoose);
         }
        
+    }
+
+    public static void resetScore() {
+        highScore = 0;
     }
 
     void GotItWrong()
