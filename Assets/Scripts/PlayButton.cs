@@ -62,17 +62,16 @@ public class PlayButton : MonoBehaviour {
         Tutorial2.SetActive(false);
     }
 
-<<<<<<< HEAD
     public void PlayFast() {
         SceneManager.LoadScene("TimeAttack");
-=======
+
+    }
     public void TastyOptionsComeHither() {
         TastyOptions.SetActive(true);
     }
 
     public void TastyOptionsBegone() {
         TastyOptions.SetActive(false);
->>>>>>> e5fb8dba8c61dc6467bfb384bf588d11af27368e
-    }
 
+    }
 }
