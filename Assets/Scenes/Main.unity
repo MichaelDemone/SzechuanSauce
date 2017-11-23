@@ -136,7 +136,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   TimeToChoose: 1.5
-  NextTimeItsShorter: 0.005
+  NextTimeItsShorter: 0.008
   Sauces:
   - {fileID: 114740695182256044, guid: d4fd07763503fbb4f9fc93700da88e9e, type: 2}
   - {fileID: 114138387665896160, guid: ebc8108e4abb3044db267a3b7d9d0ae7, type: 2}
@@ -307,6 +307,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   CreditsPanel: {fileID: 0}
+  ThatAnnoyingNug: {fileID: 0}
+  Tutorial1: {fileID: 0}
+  Tutorial2: {fileID: 0}
 --- !u!114 &351513557
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -445,6 +448,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   CreditsPanel: {fileID: 0}
+  ThatAnnoyingNug: {fileID: 0}
+  Tutorial1: {fileID: 0}
+  Tutorial2: {fileID: 0}
 --- !u!114 &420562899
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1176,7 +1182,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bb1f53b3cbdc2c6409867da7d97c1e6c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MinMagnitudeForSwipe: 5
+  MinMagnitudeForSwipe: 10
 --- !u!4 &1064475788
 Transform:
   m_ObjectHideFlags: 0
