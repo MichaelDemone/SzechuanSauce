@@ -61,4 +61,8 @@ public class PlayButton : MonoBehaviour {
         Tutorial2.SetActive(false);
     }
 
+    public void PlayFast() {
+        SceneManager.LoadScene("TimeAttack");
+    }
+
 }
