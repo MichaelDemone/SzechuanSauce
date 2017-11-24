@@ -26,7 +26,7 @@ public class OptionsHandler : MonoBehaviour {
     }
 
     public void hereAreYourFreshNugs() {
-        Dipping.resetScore();
+        PlayerPrefs.SetInt("highscore", 0);
         areYouSure.SetActive(false);
         resetComplete.SetActive(true);
     }
