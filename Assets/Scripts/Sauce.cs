@@ -35,6 +35,13 @@ public class Sauce : MonoBehaviour {
 		NugDunked = false;
 	}
 	
+    public void playSound() {
+        if (IsSzechuan) {
+            SoundHandler.playSound("Dunk");
+        } else {
+            SoundHandler.playSound("SwiperNoSwiping");
+        }
+    }
 	
 	public void OpenLid()
 	{

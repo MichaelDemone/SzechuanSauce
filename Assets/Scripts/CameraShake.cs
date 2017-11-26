@@ -6,6 +6,7 @@
 using UnityEngine;
 using System.Collections;
 
+
 public class CameraShake : MonoBehaviour {
 
     public bool debugMode = false;//Test-run/Call ShakeCamera() on start
@@ -26,6 +27,7 @@ public class CameraShake : MonoBehaviour {
     void Start() {
 
         if (debugMode) ShakeCamera();
+
     }
 
 

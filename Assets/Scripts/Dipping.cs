@@ -7,6 +7,8 @@ using UnityEngine.Advertisements;
 using Random = UnityEngine.Random;
 
 
+
+
 public class Dipping : MonoBehaviour {
 
 
@@ -37,6 +39,8 @@ public class Dipping : MonoBehaviour {
 
     public float ForceMultiplier;
     public Vector2 MaxForce = new Vector2(100, 100);
+
+    private bool notFailed = true;
     
     
     public bool ShouldScaleWithSwipeLength = true;
@@ -53,7 +57,8 @@ public class Dipping : MonoBehaviour {
 	    initialTimeToChoose = TimeToChoose;
 	    
 	    GiveNewSauce(TimeToChoose);
-	}
+
+    }
 
     void Update()
     {
@@ -66,14 +71,13 @@ public class Dipping : MonoBehaviour {
 
     void UserTapped()
     {
-        if (currentSauce.IsSzechuan)
-        {
-            GotItRight();
+        if (notFailed) {
+            if (currentSauce.IsSzechuan) {
+                GotItRight();
+            } else {
+                GotItWrong();
+            }
         }
-        else
-        {
-            GotItWrong();
-        } 
     }
     
     private Vector3 forceDir = new Vector3();
@@ -87,15 +91,16 @@ public class Dipping : MonoBehaviour {
         //forceDir.x = Math.Min(forceDir.x, MaxForce.x);
         //forceDir.y = Math.Min(forceDir.y, MaxForce.y);
         currentSauce.GetComponent<Rigidbody>().AddForce(forceDir);
-        currentSauce.GetComponent<AudioSource>().Play();
 
-        if (currentSauce.IsSzechuan)
-        {
-            GotItWrong();
-        }
-        else
-        {
-            GotItRight();
+        //currentSauce.GetComponent<AudioSource>().Play();
+        if (notFailed) {
+
+            if (currentSauce.IsSzechuan) {
+                GotItWrong();
+            } else {
+                GotItRight();
+                SoundHandler.playSound("SwiperNoSwiping");
+            }
         }
     }
     
@@ -136,7 +141,8 @@ public class Dipping : MonoBehaviour {
             score++;
             StopCoroutine(failTimer);
             cameraObject.GetComponent<CameraShake>().ShakeCamera(ShakeIntensity, ShakeDuration);
-            currentSauce.GetComponent<AudioSource>().Play();
+            currentSauce.playSound();
+            //currentSauce.GetComponent<AudioSource>().Play();
             //Destroy(currentSauce.gameObject);
             currentSauce.DunkTheNug(() => GiveNewSauce(TimeToChoose));
             //GiveNewSauce(TimeToChoose);
@@ -158,6 +164,8 @@ public class Dipping : MonoBehaviour {
     void GotItWrong()
     {
         //game over
+        notFailed = false;
+        SoundHandler.playSound("Fail");
         if(score > highScore)
         {
             highScore = score;

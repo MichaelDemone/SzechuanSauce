@@ -14,6 +14,13 @@ public class PlayButton : MonoBehaviour {
 
     // Use this for initialization
 
+    void Start() {
+        /* Scene currentScene = SceneManager.GetActiveScene();
+        if (currentScene.name == "MainMenu") {
+            SoundHandler.playSound("main menu");
+        }*/
+    }
+
     public void PressPlay()
     {
         if (CountdownToPayday < 6) {
