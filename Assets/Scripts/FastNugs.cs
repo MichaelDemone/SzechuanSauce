@@ -46,7 +46,7 @@ public class FastNugs : MonoBehaviour {
 	// Use this for initialization
 	void Start () 
 	{
-        timeHighScore = PlayerPrefs.GetInt("highscore", 0);
+        timeHighScore = PlayerPrefs.GetInt("speedHighscore", 0);
         nugsDunked = 0;
         score = 0;
 	    SwipingHandler.UserSwiped += UserSwiped;
@@ -139,7 +139,7 @@ public class FastNugs : MonoBehaviour {
             else {
                 if (score > timeHighScore) {
                     timeHighScore = score;
-                    PlayerPrefs.SetInt("highscore", timeHighScore);
+                    PlayerPrefs.SetInt("speedHighscore", timeHighScore);
                     PlayerPrefs.Save();
                 }
                 cameraObject.GetComponent<CameraShake>().ShakeCamera(ShakeIntensity, ShakeDuration);
@@ -165,7 +165,7 @@ public class FastNugs : MonoBehaviour {
             else {
                 if (score > timeHighScore) {
                     timeHighScore = score;
-                    PlayerPrefs.SetInt("highscore", timeHighScore);
+                    PlayerPrefs.SetInt("speedHighscore", timeHighScore);
                     PlayerPrefs.Save();
                 }
                 button.SetActive(true);
@@ -184,7 +184,7 @@ public class FastNugs : MonoBehaviour {
         if(score > timeHighScore)
         {
             timeHighScore = score;
-            PlayerPrefs.SetInt("highscore", timeHighScore);
+            PlayerPrefs.SetInt("speedHighscore", timeHighScore);
             PlayerPrefs.Save();
         }
         print("YOU LOSE. Highscore " + timeHighScore + ". Your score " + score + " Time to choose: " + TimeToChoose);

@@ -68,7 +68,9 @@ public class Dipping : MonoBehaviour {
         //StatsText.text += "\nCurrent sauce: " + currentSauce.name;
         //StatsText.text += "\nLast swipe: " + lastSwipeDirection;
     }
-
+    int getHighscore() {
+        return highScore;
+    }
     void UserTapped()
     {
         if (notFailed) {
