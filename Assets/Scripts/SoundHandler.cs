@@ -14,7 +14,7 @@ public class SoundHandler : MonoBehaviour {
 
     // Use this for initialization
     void Start() {
-        sounds = input;
+      //  sounds = input;
 
 
       /*  if (PlayerPrefs.GetInt("soundOn", 1) == 1)
@@ -32,7 +32,7 @@ public class SoundHandler : MonoBehaviour {
 
 
     void Awake() {
-
+        sounds = input;
         /*Scene currentScene = SceneManager.GetActiveScene();
         if(currentScene.name == "Main") {
             playSound("Game Music");
