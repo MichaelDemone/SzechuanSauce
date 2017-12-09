@@ -25,7 +25,8 @@ GameObject:
   - component: {fileID: 54840273901742344}
   - component: {fileID: 114740695182256044}
   - component: {fileID: 82864355153540796}
-  m_Layer: 0
+  - component: {fileID: 65574602856351504}
+  m_Layer: 9
   m_Name: ChipotleBBQ
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -41,7 +42,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4171290510576522}
   - component: {fileID: 65247906859685490}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: top2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -57,7 +58,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4364890591562210}
   - component: {fileID: 212132965722409254}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Lid
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -73,7 +74,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4475223698797098}
   - component: {fileID: 65765681531297354}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: top1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -89,7 +90,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4778054062912280}
   - component: {fileID: 65190847848242420}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: side3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -105,7 +106,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4949516458328872}
   - component: {fileID: 65929877944492026}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: side4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -120,7 +121,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4796359634181386}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: colliders
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -136,7 +137,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4001261821483754}
   - component: {fileID: 65510517535365766}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: bottom
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -152,7 +153,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4552426512921250}
   - component: {fileID: 65443472332111128}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: top3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -168,7 +169,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4965081933303928}
   - component: {fileID: 65257192833644388}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: side1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -184,7 +185,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4822058493382046}
   - component: {fileID: 65905008369945134}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: top4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -200,7 +201,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4397584951343464}
   - component: {fileID: 65109864636120670}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: side2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -383,6 +384,7 @@ MeshRenderer:
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -398,6 +400,7 @@ MeshRenderer:
   m_PreserveUVs: 1
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
+  m_StitchLightmapSeams: 0
   m_SelectedEditorRenderState: 3
   m_MinimumChartSize: 4
   m_AutoUVMaxDistance: 0.5
@@ -500,6 +503,18 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1.7099037, y: 1.2078098, z: 0.08067884}
   m_Center: {x: -0.0025656223, y: 0.10390502, z: -0.17365305}
+--- !u!65 &65574602856351504
+BoxCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1028493071193180}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 2.34038, y: 1.7552865, z: 0.3822961}
+  m_Center: {x: 0, y: 0, z: -0.013373005}
 --- !u!65 &65765681531297354
 BoxCollider:
   m_ObjectHideFlags: 1
@@ -658,6 +673,7 @@ SpriteRenderer:
   m_Enabled: 1
   m_CastShadows: 0
   m_ReceiveShadows: 0
+  m_DynamicOccludee: 1
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -673,6 +689,7 @@ SpriteRenderer:
   m_PreserveUVs: 0
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
+  m_StitchLightmapSeams: 0
   m_SelectedEditorRenderState: 0
   m_MinimumChartSize: 4
   m_AutoUVMaxDistance: 0.5

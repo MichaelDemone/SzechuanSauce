@@ -20,6 +20,7 @@ public class Dipping : MonoBehaviour {
     public Sauce[] Sauces;
     public Sauce[] SaucesMid;
     public Sauce[] SaucesFinal;
+   // public Sauce[] NoneOfTheGoodStuff;
 
 
     public Text StatsText;
@@ -30,18 +31,20 @@ public class Dipping : MonoBehaviour {
     private float initialTimeToChoose;
     
     private int score;
-    private Sauce currentSauce;
+    public Sauce currentSauce;
+   // public Sauce lastSauce;
     private Sauce szechuanSauce;
 
     public SwipingHandler SwipingHandler;
 
-    public Transform SpawnPoint;
+    public Transform SpawnPoint1, SpawnPoint2;
 
     public float ForceMultiplier;
     public Vector2 MaxForce = new Vector2(100, 100);
 
     private bool notFailed = true;
-    
+
+    private int spawner = 1;
     
     public bool ShouldScaleWithSwipeLength = true;
     
@@ -75,6 +78,7 @@ public class Dipping : MonoBehaviour {
     {
         if (notFailed) {
             if (currentSauce.IsSzechuan) {
+                //currentSauce.BABY_YOU_TURN_ME_ON();
                 GotItRight();
             } else {
                 GotItWrong();
@@ -101,7 +105,9 @@ public class Dipping : MonoBehaviour {
                 GotItWrong();
             } else {
                 GotItRight();
+                //currentSauce.BABY_YOU_TURN_ME_ON();
                 SoundHandler.playSound("SwiperNoSwiping");
+                
             }
         }
     }
@@ -112,22 +118,40 @@ public class Dipping : MonoBehaviour {
     {
         failTimer = MyCoroutine(time);
         StartCoroutine(failTimer);
-        if (score<=50) {
-            int randVal = Random.Range(0, Sauces.Length - 1);
-            currentSauce = Sauces[randVal];
-        } else if (score>50 && score <= 100) {
-            int randVal = Random.Range(0, SaucesMid.Length - 1);
-            currentSauce = SaucesMid[randVal];
-        } else {
-            int randVal = Random.Range(0, SaucesFinal.Length - 1);
-            currentSauce = SaucesFinal[randVal];
-        }
+
+        //lastSauce=currentSauce;
+
+         if (score<=50) {
+             int randVal = Random.Range(0, Sauces.Length - 1);
+             currentSauce = Sauces[randVal];
+         } else if (score>50 && score <= 100) {
+             int randVal = Random.Range(0, SaucesMid.Length - 1);
+             currentSauce = SaucesMid[randVal];
+         } else {
+             int randVal = Random.Range(0, SaucesFinal.Length - 1);
+             currentSauce = SaucesFinal[randVal];
+         }
+
+        //int randVal = Random.Range(0, NoneOfTheGoodStuff.Length - 1);
+        //currentSauce = NoneOfTheGoodStuff[randVal];
+
         currentSauce.Init();
+       // if(lastSauce!= null)
+       // Physics.IgnoreCollision(currentSauce.GetComponent<BoxCollider>(), lastSauce.GetComponent<BoxCollider>());
+
         Vector3 rotation;
         rotation.x = 90;
         rotation.y = 0;
         rotation.z = -90;
-        currentSauce = Instantiate(currentSauce.gameObject, SpawnPoint.position, Quaternion.identity).GetComponent<Sauce>();
+
+        //if (spawner == 1) {
+            currentSauce = Instantiate(currentSauce.gameObject, SpawnPoint1.position, Quaternion.identity).GetComponent<Sauce>();
+         //   spawner = 2;
+       // } else {
+        //    currentSauce = Instantiate(currentSauce.gameObject, SpawnPoint2.position, Quaternion.identity).GetComponent<Sauce>();
+       //     spawner = 1;
+      //  }
+
         currentSauce.transform.Rotate(rotation);
     }
 
@@ -144,6 +168,7 @@ public class Dipping : MonoBehaviour {
             StopCoroutine(failTimer);
             cameraObject.GetComponent<CameraShake>().ShakeCamera(ShakeIntensity, ShakeDuration);
             currentSauce.playSound();
+            //currentSauce.BABY_YOU_TURN_ME_ON();
             //currentSauce.GetComponent<AudioSource>().Play();
             //Destroy(currentSauce.gameObject);
             currentSauce.DunkTheNug(() => GiveNewSauce(TimeToChoose));

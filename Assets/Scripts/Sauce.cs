@@ -5,8 +5,25 @@ using UnityEngine;
 
 public class Sauce : MonoBehaviour {
 
-	// Use this for initialization
-	void Start () {
+    private Rigidbody sawceBody;
+    private Collider sawceCollider;
+
+
+
+
+    void Awake() {
+        //sawceCollider = GetComponent<Collider>();
+        //sawceCollider.enabled = false;
+        //sawceBody = GetComponent<Rigidbody>();
+        //sawceBody.isKinematic = true;
+
+        //Physics.IgnoreCollision(GameObject.Find("Main").GetComponent<Dipping>().lastSauce.GetComponent<BoxCollider>(), GetComponent<BoxCollider>());
+        
+       // StartCoroutine(Wait(0.15f, BABY_YOU_TURN_ME_ON));
+    }
+
+    // Use this for initialization
+    void Start () {
 		
 	}
 	
@@ -28,7 +45,9 @@ public class Sauce : MonoBehaviour {
 	public float DUNKSPEEEEED;
 	
 	public ParticleSystem Sawce;
-	
+
+
+
 	public void Init()
 	{
 		IsOpen = false;
@@ -77,6 +96,10 @@ public class Sauce : MonoBehaviour {
 		StartCoroutine(DUNKTHATNUG());
 	}
 
+    public void BABY_YOU_TURN_ME_ON() {
+        sawceBody.isKinematic=false;
+    }
+
 	IEnumerator DUNKTHATNUG()
 	{
 		while (THANUG.transform.position.z < 20)
@@ -87,7 +110,8 @@ public class Sauce : MonoBehaviour {
 			yield return null;
 		}
 	}
-	
+
+
 	private void MakeAFuckingSauceBukkake()
 	{
 		if (Sawce != null)
