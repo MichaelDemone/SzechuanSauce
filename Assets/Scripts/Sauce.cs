@@ -19,7 +19,7 @@ public class Sauce : MonoBehaviour {
 
         //Physics.IgnoreCollision(GameObject.Find("Main").GetComponent<Dipping>().lastSauce.GetComponent<BoxCollider>(), GetComponent<BoxCollider>());
         
-       // StartCoroutine(Wait(0.15f, BABY_YOU_TURN_ME_ON));
+        StartCoroutine(Wait(0.5f, BABY_YOU_TURN_ME_ON));
     }
 
     // Use this for initialization
@@ -97,7 +97,7 @@ public class Sauce : MonoBehaviour {
 	}
 
     public void BABY_YOU_TURN_ME_ON() {
-        sawceBody.isKinematic=false;
+        gameObject.layer = 10;
     }
 
 	IEnumerator DUNKTHATNUG()
