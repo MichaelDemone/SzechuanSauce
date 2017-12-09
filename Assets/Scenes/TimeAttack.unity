@@ -159,6 +159,7 @@ MonoBehaviour:
   nugsToDunk: 10
   SwipingHandler: {fileID: 1064475787}
   SpawnPoint: {fileID: 2077478038}
+  ForceMultiplier: 30
   MaxForce: {x: 100, y: 100}
   ShouldScaleWithSwipeLength: 0
 --- !u!4 &1621167
