@@ -73,8 +73,8 @@ public class Sauce : MonoBehaviour {
 		// here's the magic.
 		FlipThatShit();
 		FuckingDunkTheActualNugSoHard();
-		StartCoroutine(Wait(0.25f, MakeAFuckingSauceBukkake));
-		StartCoroutine(Wait(0.25f, () =>
+		StartCoroutine(Wait(0.01f, MakeAFuckingSauceBukkake));
+		StartCoroutine(Wait(0.1f, () =>
 		{
 			AfterDunk();
 			Destroy(this.gameObject);

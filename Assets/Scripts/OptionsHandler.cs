@@ -28,6 +28,7 @@ public class OptionsHandler : MonoBehaviour {
 
     public void hereAreYourFreshNugs() {
         PlayerPrefs.SetInt("highscore", 0);
+        PlayerPrefs.SetInt("speedHighscore", 0);
         areYouSure.SetActive(false);
         resetComplete.SetActive(true);
     }

@@ -23,7 +23,7 @@ public class PlayButton : MonoBehaviour {
 
     public void PressPlay()
     {
-        if (CountdownToPayday < 6) {
+        if (CountdownToPayday < 12) {
             CountdownToPayday++;
             SceneManager.LoadScene("Main");
         } else {
@@ -35,7 +35,7 @@ public class PlayButton : MonoBehaviour {
 
     public void BackToMenu()
     {
-        if (CountdownToPayday < 6) {
+        if (CountdownToPayday < 12) {
             CountdownToPayday++;
             SceneManager.LoadScene("MainMenu");
         } else {
