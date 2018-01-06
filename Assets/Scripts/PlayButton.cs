@@ -81,4 +81,9 @@ public class PlayButton : MonoBehaviour {
         TastyOptions.SetActive(false);
 
     }
+
+    public void TryAgain() {
+        Tutorial1.SetActive(false);
+//        DippingTutorial.menuActive = false;
+    }
 }

@@ -17,6 +17,7 @@ public class Dipping : MonoBehaviour {
     public float TimeToChoose;
     public float NextTimeItsShorter;
     public float minTimeLimit;
+    public float dunkDelay;
     public Sauce[] Sauces;
     public Sauce[] SaucesMid;
     public Sauce[] SaucesFinal;
@@ -155,6 +156,8 @@ public class Dipping : MonoBehaviour {
         currentSauce.transform.Rotate(rotation);
     }
 
+    IEnumerator timeDatDUNK;
+
     void GotItRight()
     {
         if (TimeToChoose > minTimeLimit) {
@@ -166,8 +169,11 @@ public class Dipping : MonoBehaviour {
         {
             score++;
             StopCoroutine(failTimer);
+
             cameraObject.GetComponent<CameraShake>().ShakeCamera(ShakeIntensity, ShakeDuration);
             currentSauce.playSound();
+            timeDatDUNK = JustWait(dunkDelay);
+            StartCoroutine(timeDatDUNK);
             //currentSauce.BABY_YOU_TURN_ME_ON();
             //currentSauce.GetComponent<AudioSource>().Play();
             //Destroy(currentSauce.gameObject);
@@ -220,5 +226,9 @@ public class Dipping : MonoBehaviour {
     {
         yield return new WaitForSeconds(seconds);
         GotItWrong();
+    }
+
+    IEnumerator JustWait(float seconds) {
+        yield return new WaitForSeconds(seconds);
     }
 }
